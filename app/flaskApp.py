@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return f"Контейнер ID: {socket.gethostname()}"
+    return f"ID Контейнера: {socket.gethostname()}"
 
 if __name__ == "__main__":
     app.run(debug=True)
