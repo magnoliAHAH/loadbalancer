@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+
+  flask:
+    build:
+      context: app
+    scale: 3
+    networks:
+      - backend
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./nginx/www/:/home/web/www
+    depends_on:
+      - flask
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - backend
+      - default
+
+networks:
+  backend:
+    driver: bridge
+
+
